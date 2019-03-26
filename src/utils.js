@@ -19,8 +19,8 @@ const devDeps = [
   'prettier'
 ];
 
-const fileExists = file => {
-  return new Promise((resolve, reject) =>
+const fileExists = file =>
+  new Promise((resolve, reject) =>
     fs.access(path.resolve(file), fs.F_OK, error =>
       error
         ? error.code === 'ENOENT'
@@ -29,7 +29,6 @@ const fileExists = file => {
         : resolve(true)
     )
   );
-};
 
 const initializeGit = () =>
   new Promise((resolve, reject) =>
@@ -53,10 +52,19 @@ const installDevDependencies = () =>
     )
   );
 
+paths = () => ({
+  cwd: {
+    fullPath: path.resolve('.'),
+    basename: path.basename(path.resolve('.'))
+  },
+  packageJson: path.resolve('./package.json')
+});
+
 const writePackageJsonDefaults = packageJson =>
   new Promise((resolve, reject) => {
     try {
       const pkgJson = require(path.resolve(packageJson));
+      pkgJson.main = './src/index.js';
       pkgJson.scripts = pkgJson.scripts || {};
       pkgJson.scripts.prettier = 'npx prettier --write src/**/*.js';
       pkgJson.scripts.lint = 'eslint --debug src/';
@@ -70,9 +78,9 @@ const writePackageJsonDefaults = packageJson =>
       pkgJson['lint-staged']['*.(js|jsx)'] = ['npm run lint:write', 'git add'];
 
       const output = JSON.stringify(pkgJson, null, 2);
-      fs.writeFile(packageJson, output, err => {
-        err ? reject(err) : resolve(true);
-      });
+      fs.writeFile(packageJson, output, err =>
+        err ? reject(err) : resolve(true)
+      );
     } catch (exception) {
       reject(exception);
     }
@@ -80,29 +88,40 @@ const writePackageJsonDefaults = packageJson =>
 
 const writeTemplateFile = template =>
   new Promise((resolve, reject) =>
-    fs.writeFile(
-      path.resolve('.', template.fileName),
-      template.content,
-      err => {
-        err ? reject(err) : resolve(true);
-      }
+    fs.mkdir(
+      path.dirname(path.resolve('.', template.fileName)),
+      { recursive: true },
+      err =>
+        err
+          ? reject(err)
+          : fs.writeFile(
+              path.resolve('.', template.fileName),
+              template.content,
+              err => (err ? reject(err) : resolve(true))
+            )
     )
   );
 
 const writeTemplateFiles = () =>
-  new Promise((resolve, reject) =>
-    Promise.all(
-      Object.keys(templates).map(
-        async key => await writeTemplateFile(templates[key])
-      )
-    )
-  );
+  new Promise(async (resolve, reject) => {
+    try {
+      await Promise.all(
+        Object.keys(templates).map(
+          async key => await writeTemplateFile(templates[key])
+        )
+      );
+      resolve(true);
+    } catch (exception) {
+      reject(exception);
+    }
+  });
 
 module.exports = {
   fileExists,
   initializeGit,
   initializeNpm,
   installDevDependencies,
+  paths,
   writePackageJsonDefaults,
   writeTemplateFiles
 };

@@ -1,3 +1,8 @@
+const sourceIndex = {
+  fileName: 'src/index.js',
+  content: ''
+};
+
 const editorConfig = {
   fileName: '.editorconfig',
   content: `# EditorConfig is awesome: http://EditorConfig.org
@@ -199,7 +204,7 @@ Temporary Items
 };
 
 const prettierConfig = {
-  fileName: '.prettier.config.js',
+  fileName: 'prettier.config.js',
   content: `module.exports = {
   arrowParens: 'avoid', // <avoid|always> | default 'avoid'
   bracketSpacing: true, // <bool> | default true
@@ -239,5 +244,6 @@ module.exports = {
   eslintIgnore,
   eslintrc,
   gitignore,
-  prettierConfig
+  prettierConfig,
+  sourceIndex
 };
