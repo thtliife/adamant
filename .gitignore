@@ -117,3 +117,6 @@ Temporary Items
 .serverless
 
 # End of https://www.gitignore.io/api/serverless,node,osx
+
+# dont commit the images for the readme...
+assets/
