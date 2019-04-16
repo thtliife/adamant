@@ -1,7 +1,7 @@
 {
   "name": "@thtliife/adamant",
   "version": "0.1.0",
-  "description": "_My opinionated linting setup for javascript projects_",
+  "description": "My opinionated linting setup for javascript projects",
   "main": "index.js",
   "bin": {
     "adamant": "./index.js"
@@ -21,10 +21,7 @@
     }
   },
   "lint-staged": {
-    "*.(js|jsx)": [
-      "npm run lint:write",
-      "git add"
-    ]
+    "*.(js|jsx)": ["npm run lint:write", "git add"]
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
