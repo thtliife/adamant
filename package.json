@@ -1,10 +1,10 @@
 {
-  "name": "configure-linting",
+  "name": "@thtliife/adamant",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
   "bin": {
-    "configure-linting": "./index.js"
+    "adamant": "./index.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,10 +21,7 @@
     }
   },
   "lint-staged": {
-    "*.(js|jsx)": [
-      "npm run lint:write",
-      "git add"
-    ]
+    "*.(js|jsx)": ["npm run lint:write", "git add"]
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
