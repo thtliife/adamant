@@ -44,6 +44,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:thtliife/adamant.git"
-  }
+    "url": "git+ssh://git@github.com/thtliife/adamant.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thtliife/adamant/issues"
+  },
+  "homepage": "https://github.com/thtliife/adamant#readme"
 }
