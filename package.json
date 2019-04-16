@@ -1,6 +1,6 @@
 {
   "name": "@thtliife/adamant",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "My opinionated linting setup for javascript projects",
   "main": "index.js",
   "bin": {
@@ -21,7 +21,10 @@
     }
   },
   "lint-staged": {
-    "*.(js|jsx)": ["npm run lint:write", "git add"]
+    "*.(js|jsx)": [
+      "npm run lint:write",
+      "git add"
+    ]
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
