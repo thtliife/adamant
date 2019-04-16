@@ -1,7 +1,7 @@
 {
   "name": "@thtliife/adamant",
   "version": "0.0.1",
-  "description": "",
+  "description": "_My opinionated linting setup for javascript projects_",
   "main": "index.js",
   "bin": {
     "adamant": "./index.js"
@@ -41,5 +41,9 @@
   "dependencies": {
     "enquirer": "^2.3.0",
     "ora": "^3.2.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:thtliife/adamant.git"
   }
 }
